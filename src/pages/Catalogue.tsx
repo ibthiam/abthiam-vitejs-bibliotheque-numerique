@@ -24,6 +24,10 @@ const Catalogue = () => {
   const [selectedYear, setSelectedYear] = useState<string>("all");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (categoryFromUrl) {
       setSelectedCategory(categoryFromUrl);
     }

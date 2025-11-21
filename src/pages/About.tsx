@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BookOpen, Users, Target, History } from "lucide-react";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

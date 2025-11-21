@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, MapPin, Phone, Facebook, Twitter, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -15,6 +15,10 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
