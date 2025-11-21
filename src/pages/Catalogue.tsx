@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BookCard } from "@/components/BookCard";
@@ -14,10 +15,19 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
 const Catalogue = () => {
+  const [searchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
+  
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryFromUrl || "all");
   const [selectedAuthor, setSelectedAuthor] = useState<string>("all");
   const [selectedYear, setSelectedYear] = useState<string>("all");
+
+  useEffect(() => {
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl]);
 
   const authors = useMemo(() => {
     return Array.from(new Set(books.map((book) => book.author))).sort();
