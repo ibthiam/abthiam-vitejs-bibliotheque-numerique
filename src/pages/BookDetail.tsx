@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BookCard } from "@/components/BookCard";
@@ -12,6 +13,10 @@ const BookDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
   const book = books.find((b) => b.id === parseInt(id || "0"));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!book) {
     return (
